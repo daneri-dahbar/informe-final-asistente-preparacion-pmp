@@ -157,7 +157,8 @@
   colorlinks=true,
   linkcolor=linkfg,
   citecolor=linkfg,
-  urlcolor=linkfg
+  urlcolor=linkfg,
+  linktoc=all
 }
 
 % ======================================================
@@ -183,6 +184,7 @@
 \begin{document}
 \ifdarkmode
   \pagecolor{pagebg}\color{textfg}
+  \renewcommand\normalcolor{\color{textfg}}
   \arrayrulecolor{textfg}
   \AtBeginEnvironment{tabular}{\color{textfg}}
   \AtBeginEnvironment{tabularx}{\color{textfg}}
@@ -224,6 +226,43 @@ Carrera: Ingeniería en Informática
 \tableofcontents
 \listoffigures
 \listoftables
+\chapter*{Lista de Siglas y Abreviaturas}
+\addcontentsline{toc}{chapter}{Lista de Siglas y Abreviaturas}
+\begin{description}
+\item[API] Application Programming Interface (Interfaz de Programación de Aplicaciones).
+\item[CLS] Cumulative Layout Shift (Desplazamiento Acumulado del Diseño).
+\item[CPM] Critical Path Method (Método de la Ruta Crítica).
+\item[CPI] Cost Performance Index (Índice de Desempeño del Costo).
+\item[DAN] Do Anything Now (Haz Cualquier Cosa Ahora).
+\item[DoD] Definition of Done (Definición de Terminado).
+\item[ELI5] Explain Like I'm Five (Explícamelo como si tuviera cinco años).
+\item[EVM] Earned Value Management (Gestión del Valor Ganado).
+\item[HTTP] HyperText Transfer Protocol (Protocolo de Transferencia de Hipertexto).
+\item[HTTPS] HyperText Transfer Protocol Secure (Protocolo de Transferencia de Hipertexto Seguro).
+\item[IA] Inteligencia Artificial.
+\item[ITS] Intelligent Tutoring System (Sistema Tutor Inteligente).
+\item[JSON] JavaScript Object Notation (Notación de Objetos de JavaScript).
+\item[JWT] JSON Web Token (Token Web JSON).
+\item[LCP] Largest Contentful Paint (Mayor Pintura de Contenido).
+\item[LLM] Large Language Model(s) (Modelo(s) de Lenguaje de Gran Escala).
+\item[MVP] Minimum Viable Product (Producto Mínimo Viable).
+\item[NPS] Net Promoter Score (Índice Neto de Promotores).
+\item[OpEx] Operating Expenditures (Costos Operativos).
+\item[OWASP] Open Worldwide Application Security Project (Proyecto Abierto Mundial de Seguridad de Aplicaciones).
+\item[PM] Project Manager (Gerente de Proyecto).
+\item[PMBOK] Project Management Body of Knowledge (Cuerpo de Conocimiento en Dirección de Proyectos).
+\item[PMI] Project Management Institute (Instituto de Dirección de Proyectos).
+\item[PMP] Project Management Professional (Profesional en Dirección de Proyectos).
+\item[RLS] Row Level Security (Seguridad a Nivel de Fila).
+\item[SDK] Software Development Kit (Kit de Desarrollo de Software).
+\item[SPI] Schedule Performance Index (Índice de Desempeño del Cronograma).
+\item[TCPI] To-Complete Performance Index (Índice de Desempeño para Completar).
+\item[TTFT] Time to First Token (Tiempo hasta el Primer Token).
+\item[UI] User Interface (Interfaz de Usuario).
+\item[UX] User Experience (Experiencia de Usuario).
+\item[WAL] Write-Ahead Logging (Registro de Escritura Anticipada).
+\item[XSS] Cross-Site Scripting (Secuencias de Comandos en Sitios Cruzados).
+\end{description}
 \clearpage
 
 % ======================================================
