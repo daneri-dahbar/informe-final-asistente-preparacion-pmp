@@ -1,0 +1,289 @@
+\documentclass[12pt,a4paper]{report}
+
+% ======================================================
+% IDIOMA Y CODIFICACIÓN
+% ======================================================
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+
+% ======================================================
+% CÓDIGO DE PROGRAMACIÓN
+% ======================================================
+\usepackage[table]{xcolor}
+\newif\ifdarkmode
+\ifnum\pdfstrcmp{\jobname}{main_dark}=0
+  \darkmodetrue
+\else
+  \darkmodefalse
+\fi
+\ifdarkmode
+  \definecolor{pagebg}{RGB}{18,18,18}
+  \definecolor{textfg}{RGB}{235,235,235}
+  \definecolor{linkfg}{RGB}{140,210,255}
+  \definecolor{codebg}{RGB}{30,30,30}
+\else
+  \definecolor{pagebg}{RGB}{255,255,255}
+  \definecolor{textfg}{RGB}{0,0,0}
+  \definecolor{linkfg}{RGB}{0,0,0}
+  \definecolor{codebg}{RGB}{245,245,245}
+\fi
+\usepackage{minted}
+\ifdarkmode
+  \setminted{
+    bgcolor=codebg,
+    fontsize=\footnotesize,
+    breaklines=true,
+    style=monokai
+  }
+  \setmintedinline{
+    bgcolor=codebg,
+    fontsize=\small,
+    style=monokai
+  }
+\else
+  \setminted{
+    bgcolor=codebg,
+    fontsize=\footnotesize,
+    breaklines=true
+  }
+  \setmintedinline{
+    bgcolor=codebg,
+    fontsize=\small
+  }
+\fi
+
+% ======================================================
+% FUENTE Y ESPACIADO (APA 7)
+% ======================================================
+\usepackage{times}          % Times New Roman
+\usepackage{setspace}
+\onehalfspacing             % Interlineado 1.5
+\DeclareTextFontCommand{\texttt}{\ttfamily\small}
+
+% ======================================================
+% MÁRGENES (APA 7)
+% ======================================================
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=2.54cm,
+  right=2.54cm,
+  top=2.54cm,
+  bottom=2.54cm
+}
+
+% ======================================================
+% PÁRRAFOS
+% ======================================================
+\usepackage{indentfirst}
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{3em}
+
+% ======================================================
+% TÍTULOS – APA 7
+% ======================================================
+\usepackage{titlesec}
+
+% Nivel 1 – Capítulo (centrado, negrita)
+\titleformat{\chapter}
+  {\normalfont\bfseries\centering}
+  {\thechapter.}
+  {1em}
+  {}
+
+% Nivel 2 – Sección (izquierda, negrita)
+\titleformat{\section}
+  {\normalfont\bfseries}
+  {\thesection}
+  {1em}
+  {}
+
+% Nivel 3 – Subsección (izquierda, negrita cursiva)
+\titleformat{\subsection}
+  {\normalfont\bfseries\itshape}
+  {\thesubsection}
+  {1em}
+  {}
+
+% ======================================================
+% TABLAS Y FIGURAS (APA 7)
+% ======================================================
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{etoolbox}
+
+% Fallback definitions for icons if fontawesome5 fails or icons are missing
+\providecommand{\faCheck}{\checkmark}
+\providecommand{\faCircle}{\ensuremath{\circ}}
+\providecommand{\faLock}{\ensuremath{\mathbf{L}}}
+\providecommand{\faMap}{\textbf{[Map]}}
+\providecommand{\faUnlock}{\textbf{[Unlock]}}
+\providecommand{\faInfinity}{\ensuremath{\infty}}
+\providecommand{\faBook}{\textbf{[Book]}}
+\providecommand{\faExclamationTriangle}{\textbf{[!]}}
+\providecommand{\faWrench}{\textbf{[Wrench]}}
+\providecommand{\faEdit}{\textbf{[Edit]}}
+\providecommand{\faBrain}{\textbf{[Brain]}}
+\providecommand{\faGavel}{\textbf{[Gavel]}}
+\providecommand{\faBriefcase}{\textbf{[Case]}}
+\providecommand{\faChild}{\textbf{[Child]}}
+\providecommand{\faCalculator}{\textbf{[Calc]}}
+\providecommand{\faGraduationCap}{\textbf{[Grad]}}
+
+\addto\captionsspanish{
+  \renewcommand{\tablename}{Tabla}
+  \renewcommand{\listtablename}{Índice de tablas}
+}
+
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  textfont=it
+}
+
+% ======================================================
+% ENLACES
+% ======================================================
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=linkfg,
+  citecolor=linkfg,
+  urlcolor=linkfg
+}
+
+% ======================================================
+% BIBLIOGRAFÍA – APA 7
+% ======================================================
+\usepackage[
+  style=apa,
+  backend=biber,
+  language=spanish,
+  autolang=other,
+  doi=true,
+  isbn=false,
+  url=true
+]{biblatex}
+
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\DefineBibliographyStrings{spanish}{bibliography={Referencias}}
+\addbibresource{referencias.bib}
+
+% ======================================================
+% DOCUMENTO
+% ======================================================
+\begin{document}
+\ifdarkmode
+  \pagecolor{pagebg}\color{textfg}
+  \arrayrulecolor{textfg}
+  \AtBeginEnvironment{tabular}{\color{textfg}}
+  \AtBeginEnvironment{tabularx}{\color{textfg}}
+  \AtBeginEnvironment{tabular*}{\color{textfg}}
+\fi
+
+% ======================================================
+% PORTADA
+% ======================================================
+\begin{titlepage}
+\centering
+
+{\Large Universidad Nacional de Catamarca \par}
+\vspace{0.5cm}
+{\Large Facultad de Tecnología y Ciencias Aplicadas \par}
+\vspace{2.5cm}
+
+{\LARGE\bfseries Asistente virtual para la preparación del examen Project Management Professional (PMP)\par}
+\vspace{1.5cm}
+
+{\large Trabajo Final de Ingeniería \par}
+\vspace{2cm}
+
+\begin{flushleft}
+Autores: Juan Cruz Daneri \& Alberto Dahbar \\
+Director: Mg. Carlos A. Acosta Parra \\
+Codirector: Dr. Gabriel D. Vilallonga \\
+Carrera: Ingeniería en Informática
+\end{flushleft}
+
+\vfill
+{\large Año 2026 \par}
+
+\end{titlepage}
+
+% ======================================================
+% ÍNDICES
+% ======================================================
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+% ======================================================
+% CAPÍTULOS
+% ======================================================
+
+\chapter{Introducción}
+\input{capitulos/capitulo1_introduccion}
+
+\chapter{Marco teórico}
+\input{capitulos/capitulo2_marco_teorico}
+
+\chapter{Metodología}
+\input{capitulos/capitulo3_metodologia}
+
+\chapter{Diseño de la solución}
+\input{capitulos/capitulo4_diseno_solucion}
+
+\chapter{Implementación}
+\input{capitulos/capitulo5_implementacion}
+
+\chapter{Evaluación}
+\input{capitulos/capitulo6_evaluacion}
+
+\chapter{Resultados}
+\input{capitulos/capitulo7_resultados}
+
+\chapter{Discusión}
+\input{capitulos/capitulo8_discusion}
+
+\chapter{Conclusiones}
+\input{capitulos/capitulo9_conclusiones}
+
+% ======================================================
+% BIBLIOGRAFÍA
+% ======================================================
+\clearpage
+\printbibliography[heading=bibintoc]
+
+% ======================================================
+% ANEXOS
+% ======================================================
+\appendix
+
+\chapter{Anexo A: Especificación detallada de requisitos (épicas e historias de usuario)}
+\input{anexos/anexoA_especificacion}
+
+\chapter{Anexo B: Planificación detallada de sprints y backlog}
+\input{anexos/anexoB_planificacion}
+
+\chapter{Anexo C: Selección del modelo LLM (Gemini 3 Flash)}
+\label{anexo:seleccion_llm}
+\input{anexos/anexoC_seleccion_llm}
+
+\chapter{Anexo D: Instrumentos de evaluación y protocolos de prueba}
+\label{anexo:instrumentos}
+\input{anexos/anexoD_instrumentos}
+
+\chapter{Anexo E: Manual de uso del asistente}
+\label{anexo:manual}
+\input{anexos/anexoE_manual}
+
+\end{document}

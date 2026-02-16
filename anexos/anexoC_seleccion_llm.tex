@@ -1,0 +1,48 @@
+Este anexo documenta el criterio técnico y económico utilizado para seleccionar \textbf{Gemini 3 Flash} como modelo de lenguaje (LLM) para el asistente. La comparación se realiza contra \textbf{GPT-5 mini} (OpenAI) y \textbf{Claude Haiku 4.5} (Anthropic) utilizando los parámetros publicados en el catálogo de modelos de Vercel AI Gateway (\url{https://vercel.com/ai-gateway/models}) y el endpoint público de descubrimiento de modelos (\url{https://ai-gateway.vercel.sh/v1/models}).
+
+\section{Criterios de selección}
+\begin{itemize}
+\item \textbf{Ventana de contexto:} soporte para conversaciones largas, análisis de casos extensos y preservación de historial.
+\item \textbf{Límite de salida:} capacidad para producir explicaciones completas, rúbricas y retroalimentación detallada sin truncamiento.
+\item \textbf{Costo por token:} viabilidad del sistema en escenarios de uso intensivo (streaming y sesiones frecuentes).
+\item \textbf{Capacidades:} soporte para razonamiento, herramientas y entrada de archivos, alineado con las necesidades del producto.
+\item \textbf{Caching:} costos de lectura/escritura de caché cuando aplica, para optimizar prompts repetidos.
+\end{itemize}
+
+\section{Comparación de especificaciones y costos}
+La Tabla \ref{tab:llm_comparacion_gateway} resume los principales parámetros reportados por Vercel AI Gateway para cada modelo.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l r r r r r}
+\toprule
+\textbf{Modelo (ID)} & \textbf{Contexto} & \textbf{Salida} & \textbf{Input (\$/M)} & \textbf{Output (\$/M)} & \textbf{Cache read (\$/M)} \\
+\midrule
+\texttt{google/gemini-3-flash} & 1{,}000{,}000 & 64{,}000 & 0.50 & 3.00 & 0.05 \\
+\texttt{openai/gpt-5-mini} & 400{,}000 & 128{,}000 & 0.25 & 2.00 & 0.03 \\
+\texttt{anthropic/claude-haiku-4.5} & 200{,}000 & 64{,}000 & 1.00 & 5.00 & 0.10 \\
+\bottomrule
+\end{tabularx}
+\caption{Comparación de parámetros y precios (Vercel AI Gateway).}
+\label{tab:llm_comparacion_gateway}
+\end{table}
+
+\textbf{Nota sobre cache write:} en el catálogo, \texttt{openai/gpt-5-mini} reporta costo de escritura de caché igual a 0, mientras que \texttt{anthropic/claude-haiku-4.5} reporta un costo de escritura de caché de 1.25 \$/M tokens. En \texttt{google/gemini-3-flash} se reporta lectura de caché y precios por tramos, con costo constante en los tramos publicados.
+
+\section{Análisis y justificación de Gemini 3 Flash}
+\subsection{Ventana de contexto y continuidad pedagógica}
+El asistente fue diseñado para sostener interacciones prolongadas: sesiones de estudio con seguimiento, análisis de casos situacionales y simulaciones donde el usuario retoma un hilo previo. Bajo este patrón de uso, la \textbf{ventana de contexto} es un factor determinante. \texttt{google/gemini-3-flash} ofrece \textbf{1{,}000{,}000 tokens} de contexto, lo que reduce la necesidad de resumir agresivamente el historial o de implementar estrategias complejas de compresión temprana del diálogo.
+
+\subsection{Costo total en escenarios de uso intensivo}
+En una aplicación de estudio conversacional con streaming, el costo se concentra típicamente en la salida (explicaciones, feedback y correcciones). En la Tabla \ref{tab:llm_comparacion_gateway}, \texttt{openai/gpt-5-mini} presenta el menor costo por input y output, mientras que \texttt{google/gemini-3-flash} mantiene un costo competitivo para un modelo con ventana de contexto significativamente superior. \texttt{anthropic/claude-haiku-4.5} resulta más costoso tanto en input como en output dentro de los valores publicados.
+
+\subsection{Capacidades relevantes para el producto}
+Los tres modelos comparados reportan capacidades de \textit{reasoning}, \textit{tool-use}, \textit{vision} y \textit{file-input}. En particular, \texttt{google/gemini-3-flash} y \texttt{openai/gpt-5-mini} incluyen además la etiqueta de \textit{implicit-caching}, lo cual es compatible con optimizaciones de prompts repetidos y escenarios con instrucciones de sistema estables.
+
+\subsection{Compatibilidad con la implementación del proyecto}
+El sistema integra el modelo mediante LangChain y un flujo de streaming desde una API Route. En la implementación se utilizó la familia \texttt{gemini-3-flash-preview}; la elección se alinea con la disponibilidad de Gemini 3 Flash en el ecosistema del gateway y con los objetivos del proyecto: \textbf{baja fricción operativa}, \textbf{alto contexto} para continuidad y \textbf{costos controlables} a escala.
+
+\section{Conclusión}
+Se seleccionó \textbf{Gemini 3 Flash} por ofrecer una \textbf{ventana de contexto sustancialmente mayor} que las alternativas comparadas y un perfil de costo adecuado para una herramienta de estudio con conversaciones largas y frecuentes. En términos de arquitectura, esta decisión reduce la complejidad necesaria para gestionar historial y habilita análisis extensos con menor riesgo de pérdida de contexto, manteniendo un costo por token compatible con un esquema de adopción masiva.
