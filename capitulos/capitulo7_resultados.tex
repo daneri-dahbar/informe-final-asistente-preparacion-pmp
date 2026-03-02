@@ -1,103 +1,103 @@
 Este capítulo trasciende la validación empírica con usuarios (abordada en el Capítulo 6) para realizar una \textbf{auditoría profunda} del sistema desde las perspectivas de ingeniería de software, gestión de proyectos y viabilidad económica. Se analiza no solo el producto final, sino el proceso de construcción, las decisiones de arquitectura y la sostenibilidad del modelo a largo plazo.
 
-\section{Evaluación Técnica del Sistema}
+\section{Evaluación técnica del sistema}
 
-La arquitectura basada en \textbf{Next.js 16} y \textbf{Gemini 3.0 Flash} fue sometida a un análisis riguroso de atributos de calidad (NFRs).
+La arquitectura del sistema, basada en tecnologías web modernas y modelos de lenguaje avanzados, fue sometida a un análisis riguroso para asegurar su calidad y robustez.
 
-\subsection{Rendimiento y Latencia (Performance)}
-El rendimiento se evaluó utilizando métricas de \textit{Core Web Vitals} y \textit{Time to First Token (TTFT)} bajo condiciones de red 4G simuladas.
-
-\begin{itemize}
-\item   \textbf{Streaming SSR:} La implementación de \texttt{ReadableStream} permitió un TTFT promedio de \textbf{380ms}. Esto es un 60\% más rápido que las implementaciones tradicionales de chatbots que esperan la respuesta completa (que promedian 2-3 segundos para respuestas largas).
-\item   \textbf{Bundle Size:} Gracias al \textit{Tree Shaking} de Next.js y el uso de importaciones dinámicas (\texttt{next/dynamic}) para componentes pesados como \texttt{canvas-confetti} y \texttt{framer-motion}, el tamaño del bundle inicial se mantuvo por debajo de \textbf{120KB (gzipped)}, garantizando una carga rápida incluso en dispositivos móviles de gama media.
-\item   \textbf{Optimización de Base de Datos:} El uso del modo WAL (Write-Ahead Logging) en SQLite (PocketBase) permitió manejar operaciones de lectura/escritura concurrentes sin bloqueos, soportando ráfagas de actualizaciones de estado (ej. al finalizar un examen) con tiempos de respuesta de \textbf{<10ms}.
-\end{itemize}
-
-\subsection{Seguridad y Privacidad}
-Se realizó un análisis de superficie de ataque basado en OWASP Top 10 para LLMs.
+\subsection{Rendimiento y Experiencia de Usuario}
+El rendimiento se evaluó simulando condiciones de uso real para garantizar una experiencia fluida.
 
 \begin{itemize}
-\item   \textbf{Prompt Injection:} Aunque ningún sistema es 100\% invulnerable, la arquitectura de "System Prompt Oculto" en el servidor (\texttt{/api/chat}) mitigó eficazmente los ataques directos. Los intentos de \textit{jailbreaking} fueron interceptados o redirigidos en el 95\% de los casos de prueba.
-\item   \textbf{Exposición de Datos:} Las reglas de Row Level Security (RLS) en PocketBase (\texttt{id = @request.auth.id}) demostraron ser infalibles durante las pruebas de penetración, impidiendo que un usuario autenticado accediera a los historiales de chat o progreso de otros.
-\item   \textbf{Sanitización:} El renderizado de Markdown en el cliente utiliza librerías que escapan automáticamente el HTML, previniendo ataques de XSS (Cross-Site Scripting) si la IA generara código malicioso.
+\item   \textbf{Respuesta instantánea (streaming):} la implementación de técnicas de transmisión de datos en tiempo real permitió que el usuario empiece a leer la respuesta de la IA en apenas \textbf{380ms} promedio. Esto es significativamente más rápido que los sistemas tradicionales que obligan a esperar a que la respuesta completa esté lista antes de mostrarla.
+\item   \textbf{Optimización de carga:} gracias a estrategias de carga diferida (cargar solo lo necesario en cada momento), la aplicación mantiene un peso muy ligero (menos de \textbf{120KB} iniciales), lo que garantiza un acceso rápido incluso desde conexiones móviles estándar o dispositivos de gama media.
+\item   \textbf{Eficiencia en base de datos:} la configuración de la base de datos permite manejar múltiples usuarios estudiando simultáneamente sin degradación del servicio. Las operaciones de guardado de progreso y actualización de historial ocurren en milisegundos, siendo imperceptibles para el usuario.
 \end{itemize}
 
-\subsection{Mantenibilidad y Escalabilidad}
+\subsection{Seguridad y privacidad}
+Se realizó un análisis de seguridad siguiendo estándares de la industria (\gls{owasp}) para proteger tanto la integridad del sistema como los datos de los usuarios.
+
 \begin{itemize}
-\item   \textbf{Deuda Técnica:} La adopción temprana de \textbf{React Server Components (RSC)} redujo drásticamente la necesidad de \texttt{useEffect} y gestión de estado compleja en el cliente, resultando en un código más limpio y declarativo. Sin embargo, la dependencia de versiones "Canary" o "Preview" de algunas librerías de IA introduce un riesgo de mantenimiento a corto plazo.
-\item   \textbf{Escalabilidad Horizontal:} Al ser una aplicación \textit{stateless} (el estado de la sesión de chat reside en la DB y el contexto se reconstruye en cada petición), el backend puede escalar horizontalmente en plataformas serverless (Vercel, Cloud Run) sin cambios arquitectónicos.
+\item   \textbf{Protección de la gls{ia}:} la configuración interna del comportamiento de la IA está protegida en el servidor, mitigando intentos de manipulación maliciosa (\textit{prompt injection}). Los intentos de forzar a la IA a actuar fuera de sus parámetros éticos fueron bloqueados eficazmente en la gran mayoría de los casos.
+\item   \textbf{Aislamiento de datos:} se implementaron políticas de seguridad estrictas que garantizan que cada usuario solo pueda acceder a su propia información. Las pruebas de seguridad confirmaron que es imposible para un usuario autenticado ver el historial de estudio o los datos personales de otro estudiante.
+\item   \textbf{Sanitización de contenidos:} todo el contenido generado por la IA es procesado y limpiado antes de mostrarse en pantalla, previniendo la ejecución de cualquier código malicioso o script que pudiera intentar atacar el navegador del usuario.
 \end{itemize}
 
-\section{Evaluación Pedagógica y de Contenidos}
+\subsection{Mantenibilidad y escalabilidad}
+\begin{itemize}
+\item   \textbf{Arquitectura modular:} el diseño del sistema prioriza la claridad y la separación de responsabilidades. Esto facilita que futuros equipos de desarrollo puedan entender y mejorar el código sin introducir errores en funcionalidades existentes.
+\item   \textbf{Escalabilidad en la nube:} al ser una aplicación diseñada para la nube y que no depende de servidores físicos locales para mantener la sesión del usuario, el sistema puede crecer automáticamente (escalado horizontal) para soportar miles de usuarios nuevos sin necesidad de reingeniería.
+\end{itemize}
 
-Se evaluó la calidad educativa del sistema comparándolo con estándares del PMI.
+\section{Evaluación pedagógica y de contenidos}
 
-\subsection{Cobertura del PMBOK 7ma Edición}
+Se evaluó la calidad educativa del sistema comparándolo con estándares del \gls{pmi}.
+
+\subsection{Cobertura del \gls{pmbok} 7ma edición}
 Se realizó un mapeo cruzado entre los temas generados por el asistente y los Dominios de Desempeño.
 \begin{itemize}
-\item   \textbf{Cobertura:} El sistema demostró competencia en los 8 dominios y los 12 principios.
-\item   \textbf{Sesgo:} Se detectó un ligero sesgo hacia metodologías Ágiles/Híbridas (aprox. 60\% de las respuestas), lo cual, paradójicamente, alinea bien con el examen PMP actual que ha pivotado fuertemente hacia la agilidad.
+\item   \textbf{Cobertura:} el sistema demostró competencia en los 8 dominios y los 12 principios.
+\item   \textbf{Sesgo:} se detectó un ligero sesgo hacia metodologías Ágiles/Híbridas (aprox. 60\% de las respuestas), lo cual, paradójicamente, alinea bien con el examen \gls{pmp} actual que ha pivotado fuertemente hacia la agilidad.
 \end{itemize}
 
-\subsection{Efectividad de la Ingeniería de Prompts}
-La estrategia de \textbf{"Roles Dinámicos"} (cambiar el \texttt{system\_instruction} según el modo) se evaluó cualitativamente.
+\subsection{Efectividad de la ingeniería de prompts}
+La estrategia de \textbf{\enquote{roles dinámicos}} (ajustar las instrucciones del sistema según el modo de estudio) se evaluó cualitativamente.
 \begin{itemize}
-\item   \textbf{Consistencia:} El modo "Tutor Socrático" mantuvo su postura de "responder con preguntas" en un 92\% de las interacciones, fallando solo en preguntas extremadamente simples donde una respuesta directa era inevitable.
-\item   \textbf{Alucinaciones:} La tasa de alucinación en fórmulas matemáticas fue <1\% gracias a las capacidades nativas de razonamiento de Gemini 3.0. Sin embargo, en citas bibliográficas específicas (ej. "en qué página dice X"), el modelo tendió a inventar números de página, una limitación conocida de los LLMs que no usan RAG (Retrieval-Augmented Generation).
+\item   \textbf{Consistencia de personalidad:} el modo \enquote{Tutor Socrático} mantuvo su postura pedagógica de \enquote{responder con preguntas} en un 92\% de las interacciones, demostrando que la \gls{ia} puede adherirse a reglas de comportamiento complejas.
+\item   \textbf{Precisión de la información:} la precisión en explicaciones conceptuales y fórmulas matemáticas fue muy alta. Sin embargo, se observó que, al solicitar citas bibliográficas muy específicas (como números de página exactos), el sistema puede generar referencias inexactas, una limitación conocida de los modelos actuales que no están conectados en tiempo real a una biblioteca digital indexada.
 \end{itemize}
 
-\section{Evaluación Económica y de Sostenibilidad}
+\section{Evaluación económica y de sostenibilidad}
 
 Un análisis crítico de la viabilidad del proyecto como producto real.
 
-\subsection{Costos Operativos (OpEx)}
+\subsection{\gls{opex}}
 \begin{itemize}
-\item   \textbf{Modelo de Costos:} Gemini 3.0 Flash ofrece una ventana de contexto masiva (1M tokens) a un costo extremadamente bajo en comparación con GPT-4.
-\item   \textbf{Estimación:} Una sesión de estudio promedio (50 interacciones) consume aprox. 50,000 tokens (input + output). Con los precios actuales, el costo por usuario activo mensual es inferior a \textbf{\$0.50 USD}. Esto permite un modelo de negocio "Freemium" muy agresivo o una suscripción de bajo costo (\$5-10 USD/mes) con márgenes de ganancia superiores al 90\%.
+\item   \textbf{Eficiencia del modelo:} el \gls{llm} seleccionado ofrece una capacidad de análisis de contexto masiva a un costo muy competitivo en el mercado actual.
+\item   \textbf{Estimación de costos:} una sesión de estudio promedio consume recursos computacionales mínimos. Con los precios actuales, el costo por usuario activo mensual es inferior a \textbf{\$0.50 \glslink{usd}{USD}}. Esto permite un modelo de negocio \enquote{freemium} muy agresivo o una suscripción de bajo costo con márgenes de ganancia saludables.
 \end{itemize}
 
-\subsection{Costos de Infraestructura}
+\subsection{Costos de infraestructura}
 \begin{itemize}
-\item   \textbf{Backend:} PocketBase puede alojarse en un VPS de \$5 USD/mes soportando miles de usuarios concurrentes gracias a la eficiencia de Go y SQLite.
-\item   \textbf{Frontend:} El hosting en Vercel (Hobby Tier) es gratuito para el prototipo, y escalable bajo demanda.
-\item   \textbf{Conclusión:} La barrera de entrada económica para desplegar este sistema es prácticamente nula.
+\item   \textbf{Backend (servidor):} la tecnología de base de datos elegida es extremadamente eficiente, permitiendo alojar el servicio en servidores virtuales económicos sin sacrificar rendimiento, incluso con miles de usuarios.
+\item   \textbf{Frontend (interfaz):} el alojamiento de la aplicación web puede realizarse en plataformas modernas de \gls{cdn} con costos iniciales nulos y escalabilidad bajo demanda.
+\item   \textbf{Conclusión:} la barrera de entrada económica para desplegar y mantener este sistema es muy baja, lo que favorece su sostenibilidad.
 \end{itemize}
 
-\section{Evaluación del Gestión del Proyecto}
+\section{Evaluación de la gestión del proyecto}
 
-Análisis del cumplimiento de las restricciones del proyecto de desarrollo.
+Análisis del cumplimiento de las restricciones del proyecto desarrollado.
 
-\subsection{Alcance (Scope)}
+\subsection{Alcance}
 \begin{itemize}
-\item   \textbf{Planificado vs. Realizado:} Se completaron el 100\% de los requerimientos funcionales críticos (Must-have). Se añadieron características no planificadas ("Gold Plating" positivo) como el efecto de confeti y el modo "Debate", que aportaron gran valor con poco esfuerzo.
-\item   \textbf{Deuda de Alcance:} La funcionalidad de "Examen Personalizado" (elegir temas específicos) quedó fuera del alcance inicial y se movió al backlog de la v2.0.
+\item   \textbf{Planificado vs. realizado:} de completaron el 100\% de los requerimientos funcionales críticos (must-have). Se añadieron características no planificadas (\enquote{gold plating} positivo) como el efecto de confeti y el modo \enquote{debate}, que aportaron gran valor con poco esfuerzo.
+\item   \textbf{Deuda de alcance:} la funcionalidad de \enquote{examen personalizado} (elegir temas específicos) quedó fuera del alcance inicial y se movió al backlog de la v2.0.
 \end{itemize}
 
-\subsection{Cronograma (Time)}
+\subsection{Cronograma}
 \begin{itemize}
-\item   \textbf{Desarrollo Ágil:} El uso de iteraciones cortas permitió pivotar rápidamente. Por ejemplo, la migración de la gestión de estado de \texttt{study\_sessions} a una colección \texttt{chats} más simple en PocketBase se decidió y ejecutó en 2 días al detectar complejidad innecesaria.
-\item   \textbf{Tiempo de Mercado:} El desarrollo total del MVP tomó aprox. 4 semanas, validando la alta productividad del stack Next.js + AI SDK.
+\item   \textbf{Desarrollo ágil:} el uso de iteraciones cortas permitió adaptar el rumbo del proyecto rápidamente. Por ejemplo, se simplificó la estructura de datos a mitad del desarrollo para reducir la complejidad innecesaria, decisión que se implementó en solo 2 días gracias a la flexibilidad de la arquitectura.
+\item   \textbf{Tiempo de mercado:} el desarrollo total del \gls{mvp} tomó aproximadamente 4 meses, permitiendo iteraciones constantes y refinamiento de funcionalidades.
 \end{itemize}
 
-\section{Análisis de Riesgos y Limitaciones}
+\section{Análisis de riesgos y limitaciones}
 
-Es imperativo reconocer las vulnerabilidades del sistema.
+Es importante reconocer las dependencias y vulnerabilidades del sistema para su gestión futura.
 
-\subsection{Dependencia de Terceros (Vendor Lock-in)}
-El sistema está fuertemente acoplado a la API de Google Gemini. Aunque LangChain ofrece abstracción, cambiar a OpenAI requeriría reescribir todos los prompts de sistema, ya que cada modelo responde diferente a las instrucciones de "rol".
+\subsection{Dependencia de proveedores}
+El sistema utiliza servicios avanzados de \gls{ia} de terceros (Google). Aunque se han utilizado capas de abstracción de software, cambiar a otro proveedor (como OpenAI o Anthropic) requeriría un esfuerzo de reajuste en las instrucciones del sistema, ya que cada \enquote{cerebro} artificial interpreta las órdenes de manera ligeramente diferente.
 \begin{itemize}
-\item   \textit{Mitigación:} Diseñar una capa de abstracción de prompts en futuras versiones.
+\item   \textit{Mitigación:} diseñar el sistema de forma que los componentes de IA sean intercambiables con el menor impacto posible en futuras versiones.
 \end{itemize}
 
-\subsection{Obsolescencia del Conocimiento}
-Los LLMs tienen una fecha de corte de conocimiento. Si sale el PMBOK 8va Edición mañana (ya salió en Diciembre de 2025), el modelo base quedará obsoleto.
+\subsection{Actualización del conocimiento}
+Los \glspl {llm} tienen una fecha de corte en su entrenamiento. Si los estándares del \gls{pmi} cambian drásticamente, el modelo base podría quedar desactualizado.
 \begin{itemize}
-\item   \textit{Solución:} Implementar RAG (Retrieval-Augmented Generation) para inyectar los nuevos estándares como contexto, en lugar de depender del conocimiento pre-entrenado.
+\item   \textit{Solución:} implementar técnicas de \gls{rag}, que consisten en alimentar a la IA con los documentos oficiales más recientes en tiempo real, en lugar de depender únicamente de su memoria pre-entrenada.
 \end{itemize}
 
-\section{Síntesis de la Evaluación}
+\section{Síntesis de la evaluación}
 
-La evaluación integral revela que el "Asistente de Preparación PMP" es un sistema \textbf{técnicamente robusto, pedagógicamente válido y económicamente sostenible}.
+La evaluación integral revela que el \enquote{Asistente de Preparación \gls{pmp}} es un sistema \textbf{técnicamente robusto, pedagógicamente válido y económicamente sostenible}.
 
 \begin{table}[H]
 \centering
@@ -112,11 +112,11 @@ La evaluación integral revela que el "Asistente de Preparación PMP" es un sist
 \hline
 \textbf{Negocio} & \textbf{Sobresaliente} & Costos operativos ínfimos, alta escalabilidad. \\
 \hline
-\textbf{UX/UI} & \textbf{Sobresaliente} & Diseño intuitivo, gamificación efectiva. \\
+\textbf{\glslink{ux}{UX}/\glslink{ui}{UI}} & \textbf{Sobresaliente} & Diseño intuitivo, gamificación efectiva. \\
 \hline
 \end{tabular}
 \caption{Cumplimiento de Objetivos}
 \label{tabla:objetivos}
 \end{table}
 
-El proyecto no solo cumple con los requisitos académicos, sino que constituye una base sólida para un producto SaaS (Software as a Service) real en el mercado EdTech.
+El proyecto no solo cumple con los requisitos académicos, sino que constituye una base sólida para un producto \gls{saas} real en el mercado \gls{edtech}.

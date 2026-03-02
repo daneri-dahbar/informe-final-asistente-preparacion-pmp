@@ -13,5 +13,7 @@ _minted/
 *.out
 *.run.xml
 *.toc
+*.bak
+*-SAVE-ERROR
 
 !out/*.pdf

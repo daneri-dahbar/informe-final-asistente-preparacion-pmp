@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{report}
+\documentclass[12pt,a4paper,twoside,openright]{report}
 
 % ======================================================
 % IDIOMA Y CODIFICACIÓN
@@ -7,6 +7,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{csquotes}
+\usepackage{emptypage}
 
 % ======================================================
 % CÓDIGO DE PROGRAMACIÓN
@@ -83,15 +84,28 @@
 \setlength{\emergencystretch}{3em}
 
 % ======================================================
+% LISTAS (enumitem)
+% ======================================================
+\usepackage{enumitem}
+% Configuración para asegurar que las listas tengan mayor sangría que los párrafos (1.27cm)
+% Nivel 1: 2.0cm > 1.27cm
+% Nivel 2: +1.0cm adicional
+\setlist[itemize,1]{leftmargin=2.0cm}
+\setlist[enumerate,1]{leftmargin=2.0cm}
+\setlist[itemize,2]{leftmargin=1.0cm}
+\setlist[enumerate,2]{leftmargin=1.0cm}
+
+
+% ======================================================
 % TÍTULOS – APA 7
 % ======================================================
 \usepackage{titlesec}
 
 % Nivel 1 – Capítulo (centrado, negrita)
-\titleformat{\chapter}
+\titleformat{\chapter}[block]
   {\normalfont\bfseries\centering}
-  {\thechapter.}
-  {1em}
+  {\chaptertitlename\ \thechapter:}
+  {0.5em}
   {}
 
 % Nivel 2 – Sección (izquierda, negrita)
@@ -141,6 +155,7 @@
 \addto\captionsspanish{
   \renewcommand{\tablename}{Tabla}
   \renewcommand{\listtablename}{Índice de tablas}
+  \renewcommand{\appendixname}{Anexo}
 }
 
 \captionsetup{
@@ -160,6 +175,54 @@
   urlcolor=linkfg,
   linktoc=all
 }
+
+\usepackage[acronym]{glossaries}
+\setacronymstyle{long-short}
+\makenoidxglossaries
+\newglossarystyle{siglas}{%
+  \setglossarystyle{list}%
+  \renewcommand*{\glossentry}[2]{%
+    \item[\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}]%
+      \glossentrydesc{##1}.%
+  }%
+}
+\setglossarystyle{siglas}
+
+\newacronym{ac}{AC}{Actual Costo (Costo Real)}
+\newacronym{api}{API}{Application Programming Interface (Interfaz de Programación de Aplicaciones)}
+\newacronym{bac}{BAC}{Budget at Completion (Presupuesto hasta la Conclusión)}
+\newacronym{cdn}{CDN}{Content Delivery Network (Red de Distribución de Contenidos)}
+\newacronym{cpm}{CPM}{Critical Path Method (Método de la Ruta Crítica)}
+\newacronym{css}{CSS}{Cascading Style Sheets (Hojas de Estilo en Cascada)}
+\newacronym{dan}{DAN}{Do Anything Now (Haz cualquier cosa ahora)}
+\newacronym{dod}{DoD}{Definition of Done (Definición de Terminado)}
+\newacronym{edtech}{EdTech}{Educational Technology (Tecnología Educativa)}
+\newacronym{ev}{EV}{Earned Value (Valor Ganado)}
+\newacronym{evm}{EVM}{Earned Value Management (Gestión del Valor Ganado)}
+\newacronym{ia}{IA}{Inteligencia Artificial}
+\newacronym{json}{JSON}{JavaScript Object Notation (Notación de Objetos de JavaScript)}
+\newacronym{jwt}{JWT}{JSON Web Token (Token Web JSON)}
+\newacronym[shortplural=LLMs,longplural=Modelos de Lenguaje de Gran Escala (Large Language Models)]{llm}{LLM}{Modelo de Lenguaje de Gran Escala (Large Language Model)}
+\newacronym{mvp}{MVP}{Minimum Viable Product (Producto Mínimo Viable)}
+\newacronym[shortplural=NFRs,longplural=Requisitos No Funcionales (Non-Functional Requirements)]{nfr}{NFR}{Non-Functional Requirement (Requisito No Funcional)}
+\newacronym{nps}{NPS}{Net Promoter Score (Puntuación de Promotores Netos)}
+\newacronym{opex}{OpEx}{Operating Expenditures (Costos Operativos)}
+\newacronym{owasp}{OWASP}{Open Worldwide Application Security Project (Proyecto Abierto Mundial de Seguridad de Aplicaciones)}
+\newacronym{pmbok}{PMBOK}{Project Management Body of Knowledge (Cuerpo de Conocimiento en Dirección de Proyectos)}
+\newacronym{pmi}{PMI}{Project Management Institute (Instituto de Dirección de Proyectos)}
+\newacronym{pmp}{PMP}{Project Management Professional (Profesional en Dirección de Proyectos)}
+\newacronym{pwa}{PWA}{Progressive Web App (Aplicación Web Progresiva)}
+\newacronym{rag}{RAG}{Retrieval-Augmented Generation (Generación Aumentada por Recuperación)}
+\newacronym{rls}{RLS}{Row Level Security (Seguridad a Nivel de Fila)}
+\newacronym{saas}{SaaS}{Software as a Service (Software como Servicio)}
+\newacronym{scrum}{Scrum}{Scrum (Marco de trabajo ágil)}
+\newacronym{spa}{SPA}{Single Page Application (Aplicación de Página Única)}
+\newacronym{tcpi}{TCPI}{To-Complete Performance Index (Índice de Desempeño del Trabajo por Completar)}
+\newacronym{ttfb}{TTFB}{Time to First Byte (Tiempo hasta el Primer Byte)}
+\newacronym{ui}{UI}{User Interface (Interfaz de Usuario)}
+\newacronym{usd}{USD}{United States Dollar (Dólar Estadounidense)}
+\newacronym{ux}{UX}{User Experience (Experiencia de Usuario)}
+\newacronym{wcag}{WCAG}{Web Content Accessibility Guidelines (Pautas de Accesibilidad para el Contenido Web)}
 
 % ======================================================
 % BIBLIOGRAFÍA – APA 7
@@ -197,22 +260,27 @@
 \begin{titlepage}
 \centering
 
-{\Large Universidad Nacional de Catamarca \par}
-\vspace{0.5cm}
-{\Large Facultad de Tecnología y Ciencias Aplicadas \par}
+\begin{minipage}[c]{0.4\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figuras/logo_unca.png}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}[c]{0.2\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figuras/logo_ftyca.png}
+\end{minipage} \par
 \vspace{2.5cm}
 
-{\LARGE\bfseries Asistente virtual para la preparación del examen Project Management Professional (PMP)\par}
+{\LARGE\bfseries Desarrollo y Evaluación de un Asistente Virtual Optimizado para la Preparación del Examen de Certificación Project Management Professional (PMP) basado en un Large Language Model (LLM)\par}
 \vspace{1.5cm}
 
-{\large Trabajo Final de Ingeniería \par}
+{\large Trabajo Final de Ingeniería en Informática \par}
 \vspace{2cm}
 
 \begin{flushleft}
 Autores: Juan Cruz Daneri \& Alberto Dahbar \\
 Director: Mg. Carlos A. Acosta Parra \\
-Codirector: Dr. Gabriel D. Vilallonga \\
-Carrera: Ingeniería en Informática
+Codirector: Dr. Gabriel D. Vilallonga
 \end{flushleft}
 
 \vfill
@@ -221,54 +289,41 @@ Carrera: Ingeniería en Informática
 \end{titlepage}
 
 % ======================================================
+% CONFIGURACIÓN DE PAGINACIÓN PRELIMINAR
+% ======================================================
+\pagenumbering{roman}
+
+% ======================================================
+% RESUMEN
+% ======================================================
+\cleardoublepage
+\input{capitulos/resumen}
+\cleardoublepage
+
+% ======================================================
 % ÍNDICES
 % ======================================================
 \tableofcontents
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
 \listoftables
-\chapter*{Lista de Siglas y Abreviaturas}
+\cleardoublepage
+\phantomsection
 \addcontentsline{toc}{chapter}{Lista de Siglas y Abreviaturas}
-\begin{description}
-\item[API] Application Programming Interface (Interfaz de Programación de Aplicaciones).
-\item[CLS] Cumulative Layout Shift (Desplazamiento Acumulado del Diseño).
-\item[CPM] Critical Path Method (Método de la Ruta Crítica).
-\item[CPI] Cost Performance Index (Índice de Desempeño del Costo).
-\item[DAN] Do Anything Now (Haz Cualquier Cosa Ahora).
-\item[DoD] Definition of Done (Definición de Terminado).
-\item[ELI5] Explain Like I'm Five (Explícamelo como si tuviera cinco años).
-\item[EVM] Earned Value Management (Gestión del Valor Ganado).
-\item[HTTP] HyperText Transfer Protocol (Protocolo de Transferencia de Hipertexto).
-\item[HTTPS] HyperText Transfer Protocol Secure (Protocolo de Transferencia de Hipertexto Seguro).
-\item[IA] Inteligencia Artificial.
-\item[ITS] Intelligent Tutoring System (Sistema Tutor Inteligente).
-\item[JSON] JavaScript Object Notation (Notación de Objetos de JavaScript).
-\item[JWT] JSON Web Token (Token Web JSON).
-\item[LCP] Largest Contentful Paint (Mayor Pintura de Contenido).
-\item[LLM] Large Language Model(s) (Modelo(s) de Lenguaje de Gran Escala).
-\item[MVP] Minimum Viable Product (Producto Mínimo Viable).
-\item[NPS] Net Promoter Score (Índice Neto de Promotores).
-\item[OpEx] Operating Expenditures (Costos Operativos).
-\item[OWASP] Open Worldwide Application Security Project (Proyecto Abierto Mundial de Seguridad de Aplicaciones).
-\item[PM] Project Manager (Gerente de Proyecto).
-\item[PMBOK] Project Management Body of Knowledge (Cuerpo de Conocimiento en Dirección de Proyectos).
-\item[PMI] Project Management Institute (Instituto de Dirección de Proyectos).
-\item[PMP] Project Management Professional (Profesional en Dirección de Proyectos).
-\item[RLS] Row Level Security (Seguridad a Nivel de Fila).
-\item[SDK] Software Development Kit (Kit de Desarrollo de Software).
-\item[SPI] Schedule Performance Index (Índice de Desempeño del Cronograma).
-\item[TCPI] To-Complete Performance Index (Índice de Desempeño para Completar).
-\item[TTFT] Time to First Token (Tiempo hasta el Primer Token).
-\item[UI] User Interface (Interfaz de Usuario).
-\item[UX] User Experience (Experiencia de Usuario).
-\item[WAL] Write-Ahead Logging (Registro de Escritura Anticipada).
-\item[XSS] Cross-Site Scripting (Secuencias de Comandos en Sitios Cruzados).
-\end{description}
-\clearpage
+\glsaddallunused
+\printnoidxglossary[type=\acronymtype,title={Lista de Siglas y Abreviaturas}]
+\glsresetall
 
 % ======================================================
 % CAPÍTULOS
 % ======================================================
-
+\cleardoublepage
+\pagenumbering{arabic}
 \chapter{Introducción}
 \input{capitulos/capitulo1_introduccion}
 
@@ -307,21 +362,23 @@ Carrera: Ingeniería en Informática
 % ======================================================
 \appendix
 
-\chapter{Anexo A: Especificación detallada de requisitos (épicas e historias de usuario)}
+\chapter{Especificación detallada de requisitos (épicas e historias de usuario)}
+\label{anexo:especificacion}
 \input{anexos/anexoA_especificacion}
 
-\chapter{Anexo B: Planificación detallada de sprints y backlog}
+\chapter{Planificación detallada de sprints y backlog}
+\label{anexo:planificacion}
 \input{anexos/anexoB_planificacion}
 
-\chapter{Anexo C: Selección del modelo LLM (Gemini 3 Flash)}
+\chapter{Selección del modelo LLM (Gemini 3 Flash)}
 \label{anexo:seleccion_llm}
 \input{anexos/anexoC_seleccion_llm}
 
-\chapter{Anexo D: Instrumentos de evaluación y protocolos de prueba}
+\chapter{Instrumentos de evaluación y protocolos de prueba}
 \label{anexo:instrumentos}
 \input{anexos/anexoD_instrumentos}
 
-\chapter{Anexo E: Manual de uso del asistente}
+\chapter{Manual de uso del asistente}
 \label{anexo:manual}
 \input{anexos/anexoE_manual}
 

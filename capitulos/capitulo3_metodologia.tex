@@ -1,18 +1,18 @@
-El presente capítulo describe en detalle la metodología de trabajo adoptada para el desarrollo del asistente virtual optimizado para la preparación del examen de certificación \textit{Project Management Professional} (PMP). Dado el carácter exploratorio, iterativo y progresivo del proyecto, se consideró fundamental seleccionar un enfoque metodológico que permitiera integrar el aprendizaje continuo, la experimentación controlada y la incorporación sistemática de retroalimentación a lo largo del proceso de desarrollo.
+El presente capítulo describe en detalle la metodología de trabajo adoptada para el desarrollo del asistente virtual optimizado para la preparación del examen de certificación (\gls{pmp}). Dado el carácter exploratorio, iterativo y progresivo del proyecto, se consideró fundamental seleccionar un enfoque metodológico que permitiera integrar el aprendizaje continuo, la experimentación controlada y la incorporación sistemática de retroalimentación a lo largo del proceso de desarrollo.
 
-En este sentido, el trabajo se estructuró siguiendo un enfoque iterativo e incremental, inspirado en los principios de las metodologías ágiles, que resultan especialmente adecuadas para proyectos de software con componentes innovadores y con un alto grado de incertidumbre inicial. La naturaleza del asistente desarrollado —basado en modelos de lenguaje de gran escala y orientado a un dominio educativo específico— requirió validar hipótesis de diseño, ajustar decisiones técnicas y refinar progresivamente la solución a partir de la experiencia obtenida en cada etapa.
+En este sentido, el trabajo se estructuró siguiendo un enfoque iterativo e incremental, inspirado en los principios de las metodologías ágiles, que resultan especialmente adecuadas para proyectos de software con componentes innovadores y con un alto grado de incertidumbre inicial. La naturaleza del asistente desarrollado —basado en \glspl{llm} y orientado a un dominio educativo específico— requirió validar hipótesis de diseño, ajustar decisiones técnicas y refinar progresivamente la solución a partir de la experiencia obtenida en cada etapa.
 
-El marco de trabajo Scrum fue adoptado como referencia principal para organizar el desarrollo del proyecto, no solo como una metodología de gestión, sino también como una herramienta conceptual que permitió articular objetivos, actividades y resultados de manera clara y trazable. Su aplicación fue adaptada al contexto particular de un Trabajo Final de grado, asumiendo de forma integrada los roles, eventos y artefactos, y priorizando la reflexión continua sobre el proceso y el producto desarrollado.
+El marco de trabajo Scrum fue adoptado como referencia principal para organizar el desarrollo del proyecto, no solo como una metodología de gestión, sino también como una herramienta conceptual que permitió articular objetivos, actividades y resultados de manera clara y trazable. Su aplicación fue adaptada al contexto particular de un trabajo final de grado, asumiendo de forma integrada los roles, eventos y artefactos, y priorizando la reflexión continua sobre el proceso y el producto desarrollado.
 
-A lo largo de este capítulo se presenta, en primer lugar, el enfoque metodológico general y la justificación de la elección de un modelo iterativo e incremental basado en Scrum. Posteriormente, se detalla cómo dicho marco fue adaptado al desarrollo del Trabajo Final, especificando los roles asumidos, los artefactos utilizados y los mecanismos de retroalimentación implementados. Finalmente, se expone la planificación general del proyecto y se describe cada uno de los sprints ejecutados, estableciendo la relación entre los objetivos específicos planteados y las actividades realizadas en cada iteración.
+A lo largo de este capítulo se presenta, en primer lugar, el enfoque metodológico general y la justificación de la elección de un modelo iterativo e incremental basado en Scrum. Posteriormente, se detalla cómo dicho marco fue adaptado al desarrollo del trabajo final, especificando los roles asumidos, los artefactos utilizados y los mecanismos de retroalimentación implementados. Finalmente, se expone la planificación general del proyecto y se describe cada uno de los sprints ejecutados, estableciendo la relación entre los objetivos específicos planteados y las actividades realizadas en cada iteración.
 
 Esta descripción metodológica proporciona el marco necesario para comprender las decisiones tomadas durante el desarrollo del asistente, así como para interpretar adecuadamente los resultados obtenidos y las conclusiones presentadas en los capítulos posteriores.
 
 \section{Enfoque metodológico general}
 
-El desarrollo del presente Trabajo Final se llevó a cabo adoptando un enfoque metodológico iterativo e incremental, orientado tanto al diseño y construcción del asistente virtual como a su evaluación progresiva en contextos reales de uso. Esta elección metodológica responde a la naturaleza exploratoria y aplicada del proyecto, el cual se sitúa en la intersección entre la ingeniería informática, la inteligencia artificial y la educación, y aborda un problema complejo caracterizado por altos niveles de incertidumbre técnica y conceptual.
+El desarrollo del presente trabajo final se llevó a cabo adoptando un enfoque metodológico iterativo e incremental, orientado tanto al diseño y construcción del asistente virtual como a su evaluación progresiva en contextos reales de uso. Esta elección metodológica responde a la naturaleza exploratoria y aplicada del proyecto, el cual se sitúa en la intersección entre la ingeniería en informática, la inteligencia artificial y la educación, y aborda un problema complejo caracterizado por altos niveles de incertidumbre técnica y conceptual.
 
-En particular, el trabajo implicó la integración de un modelo de lenguaje de gran escala (LLM) dentro de un sistema interactivo con objetivos educativos específicos, lo que requirió un proceso de desarrollo flexible, capaz de adaptarse a descubrimientos progresivos, retroalimentación temprana y ajustes continuos. A diferencia de enfoques tradicionales de desarrollo secuencial, donde los requisitos se definen exhaustivamente al inicio del proyecto, el presente trabajo demandó una metodología que permitiera refinar tanto los aspectos técnicos como pedagógicos de la solución a lo largo del tiempo.
+En particular, el trabajo implicó la integración de un (\gls{llm}) dentro de un sistema interactivo con objetivos educativos específicos, lo que requirió un proceso de desarrollo flexible, capaz de adaptarse a descubrimientos progresivos, retroalimentación temprana y ajustes continuos. A diferencia de enfoques tradicionales de desarrollo secuencial, donde los requisitos se definen exhaustivamente al inicio del proyecto, el presente trabajo demandó una metodología que permitiera refinar tanto los aspectos técnicos como pedagógicos de la solución a lo largo del tiempo.
 
 En este contexto, se optó por un enfoque ágil fundamentado en el marco de trabajo Scrum, el cual proporciona una estructura adecuada para gestionar proyectos complejos mediante ciclos cortos de trabajo, inspección continua y adaptación sistemática. Este enfoque permitió alinear el desarrollo técnico del asistente con los objetivos de investigación planteados, facilitando la validación temprana de decisiones de diseño y la incorporación progresiva de mejoras basadas en evidencia empírica.
 
@@ -20,7 +20,7 @@ En este contexto, se optó por un enfoque ágil fundamentado en el marco de trab
 
 El enfoque iterativo e incremental se basa en la construcción progresiva de un sistema a través de ciclos repetidos de planificación, desarrollo, evaluación y ajuste. Cada iteración produce un incremento funcional del producto, el cual puede ser analizado y evaluado antes de avanzar hacia la siguiente etapa. Este paradigma resulta especialmente adecuado para proyectos en los que los requisitos evolucionan a partir del aprendizaje obtenido durante el propio proceso de desarrollo \parencite{rath2025agile, dong2024agile}.
 
-En el caso del presente trabajo, la adopción de un enfoque iterativo e incremental se justificó por múltiples razones. En primer lugar, el comportamiento de los modelos de lenguaje de gran escala no siempre es completamente predecible, especialmente cuando se los aplica a dominios específicos como la preparación para la certificación PMP. La calidad de las respuestas, el nivel de adecuación pedagógica y la utilidad percibida por los usuarios solo pueden evaluarse de manera efectiva a través de la experimentación y la interacción real con el sistema.
+En el caso del presente trabajo, la adopción de un enfoque iterativo e incremental se justificó por múltiples razones. En primer lugar, el comportamiento de los \glapl{llm} no siempre es completamente predecible, especialmente cuando se los aplica a dominios específicos como la preparación para la certificación \gls{pmp}. La calidad de las respuestas, el nivel de adecuación pedagógica y la utilidad percibida por los usuarios solo pueden evaluarse de manera efectiva a través de la experimentación y la interacción real con el sistema.
 
 En segundo lugar, el proyecto combinó objetivos técnicos y educativos, lo que implicó un proceso de coevolución entre el diseño del software y el diseño pedagógico del asistente. Las técnicas de estudio, los tipos de explicaciones y las formas de retroalimentación debieron ajustarse progresivamente en función de la experiencia de uso y de los resultados observados en los casos de estudio.
 
@@ -32,7 +32,7 @@ La literatura en ingeniería de software y gestión de proyectos respalda amplia
 
 Dentro del conjunto de metodologías ágiles disponibles, se seleccionó el marco de trabajo Scrum como base para la organización y ejecución del proyecto. Scrum es un framework ligero y ampliamente adoptado para la gestión de proyectos complejos, basado en el empirismo y en ciclos de inspección y adaptación \parencite{verwijs2023scrum}.
 
-La elección de Scrum se sustentó, en primer lugar, en su estructura clara y bien definida, basada en roles, eventos y artefactos específicos. Esta estructura resultó especialmente adecuada para un Trabajo Final, ya que permitió organizar el proceso de desarrollo en sprints con objetivos concretos, facilitando la planificación del trabajo, el seguimiento del progreso y la documentación sistemática de cada etapa.
+La elección de Scrum se sustentó, en primer lugar, en su estructura clara y bien definida, basada en roles, eventos y artefactos específicos. Esta estructura resultó especialmente adecuada para el presente trabajo final, ya que permitió organizar el proceso de desarrollo en sprints con objetivos concretos, facilitando la planificación del trabajo, el seguimiento del progreso y la documentación sistemática de cada etapa.
 
 En segundo lugar, Scrum promueve ciclos cortos de desarrollo con entregables funcionales al final de cada sprint. Este enfoque permitió construir versiones progresivas del asistente virtual, comenzando por prototipos iniciales y avanzando hacia implementaciones más completas y refinadas.
 
@@ -40,19 +40,19 @@ Otro aspecto clave que motivó la elección de Scrum fue su énfasis en la retro
 
 Desde una perspectiva académica, Scrum ofreció además la posibilidad de vincular de manera explícita los objetivos específicos del trabajo con los sprints ejecutados, estableciendo una relación clara entre planificación, ejecución y cumplimiento de los objetivos de investigación.
 
-\section{Adaptación del marco Scrum al Trabajo Final}
+\section{Adaptación del marco Scrum al trabajo final}
 
-Si bien el marco de trabajo Scrum fue concebido originalmente para la gestión de proyectos de desarrollo de software en entornos organizacionales, sus principios y prácticas resultan igualmente aplicables al contexto académico de un Trabajo Final de grado, siempre que se realicen las adaptaciones necesarias. En este trabajo, Scrum fue utilizado como un marco conceptual y operativo para estructurar el proceso de desarrollo del asistente virtual, manteniendo sus fundamentos empíricos y ajustando su implementación a las particularidades del proyecto.
+Si bien el marco de trabajo Scrum fue concebido originalmente para la gestión de proyectos de desarrollo de software en entornos organizacionales, sus principios y prácticas resultan igualmente aplicables al contexto académico de un trabajo final de grado, siempre que se realicen las adaptaciones necesarias. En este trabajo, Scrum fue utilizado como un marco conceptual y operativo para estructurar el proceso de desarrollo del asistente virtual, manteniendo sus fundamentos empíricos y ajustando su implementación a las particularidades del proyecto.
 
 La adaptación de Scrum permitió organizar el trabajo de manera sistemática, establecer objetivos claros para cada iteración y favorecer un proceso de reflexión continua sobre el producto desarrollado. Asimismo, proporcionó una estructura que facilitó la documentación del proceso metodológico, aspecto clave en el contexto académico.
 
 \subsection{Roles asumidos}
 
-En el marco de Scrum se definen tres roles principales: Product Owner, Scrum Master y Development Team. En el presente Trabajo Final, estos roles fueron asumidos de manera integrada por el autor del proyecto, atendiendo a la escala y naturaleza individual del trabajo, pero manteniendo conceptualmente las responsabilidades asociadas a cada uno de ellos.
+En el marco de Scrum se definen tres roles principales: Product Owner, Scrum Master y Development Team. En el presente trabajo final, estos roles fueron asumidos de manera integrada por los autores del proyecto, atendiendo a la escala y naturaleza individual del trabajo, pero manteniendo conceptualmente las responsabilidades asociadas a cada uno de ellos.
 
-El rol de \textit{Product Owner} fue asumido desde la perspectiva de la definición y priorización de los objetivos del asistente virtual. Esto incluyó la identificación de las necesidades del usuario final —aspirantes a la certificación PMP—, la definición del alcance funcional del asistente y la priorización de las características a desarrollar en cada sprint, con foco en la entrega de valor educativo.
+El rol de \textit{Product Owner} fue asumido desde la perspectiva de la definición y priorización de los objetivos del asistente virtual. Esto incluyó la identificación de las necesidades del usuario final —aspirantes a la certificación \gls{pmp}—, la definición del alcance funcional del asistente y la priorización de las características a desarrollar en cada sprint, con foco en la entrega de valor educativo.
 
-El rol de \textit{Scrum Master} se reflejó en la responsabilidad de velar por la correcta aplicación del marco de trabajo, promoviendo la disciplina metodológica, la reflexión continua sobre el proceso y la eliminación de impedimentos que pudieran afectar el avance del proyecto. En este contexto, este rol adquirió un carácter principalmente reflexivo y organizativo, orientado a garantizar la coherencia metodológica del Trabajo Final.
+El rol de \textit{Scrum Master} se reflejó en la responsabilidad de velar por la correcta aplicación del marco de trabajo, promoviendo la disciplina metodológica, la reflexión continua sobre el proceso y la eliminación de impedimentos que pudieran afectar el avance del proyecto. En este contexto, este rol adquirió un carácter principalmente reflexivo y organizativo, orientado a garantizar la coherencia metodológica del trabajo final.
 
 Finalmente, el rol de \textit{Development Team} se materializó en la ejecución de las tareas técnicas y conceptuales necesarias para el desarrollo del asistente, incluyendo el diseño de prompts, la implementación del backend y frontend, la definición de flujos de interacción y la realización de pruebas funcionales y evaluativas.
 
@@ -60,27 +60,27 @@ Esta asunción integrada de roles resulta consistente con prácticas habituales 
 
 \subsection{Artefactos de Scrum utilizados}
 
-La aplicación del marco Scrum en este Trabajo Final se apoyó en el uso de artefactos fundamentales que permitieron organizar, planificar y dar seguimiento al desarrollo del proyecto. Entre los principales artefactos utilizados se destacan el Product Backlog, el Sprint Backlog y los incrementos generados en cada iteración.
+La aplicación del marco Scrum en este trabajo final se apoyó en el uso de artefactos fundamentales que permitieron organizar, planificar y dar seguimiento al desarrollo del proyecto. Entre los principales artefactos utilizados se destacan el Product Backlog, el Sprint Backlog y los incrementos generados en cada iteración.
 
-El \textit{Product Backlog} se constituyó como una lista priorizada de épicas e historias de usuario que describen las funcionalidades y características del asistente virtual. Estas historias fueron redactadas desde la perspectiva del usuario final y se enfocaron tanto en aspectos técnicos como pedagógicos, permitiendo vincular el desarrollo del software con los objetivos educativos del proyecto.
+El \textit{Product Backlog} se constituyó como una lista priorizada de épicas e historias de usuario que describen las funcionalidades y características del asistente virtual (ver detalle en Anexo \ref{anexo:especificacion}). Estas historias fueron redactadas desde la perspectiva del usuario final y se enfocaron tanto en aspectos técnicos como pedagógicos, permitiendo vincular el desarrollo del software con los objetivos educativos del proyecto.
 
-El \textit{Sprint Backlog} se definió para cada sprint a partir del Product Backlog, seleccionando las historias de usuario que serían abordadas en la iteración correspondiente. Este artefacto permitió delimitar claramente el alcance de cada sprint y establecer compromisos realistas en función del tiempo disponible y de los objetivos académicos del Trabajo Final.
+El \textit{Sprint Backlog} se definió para cada sprint a partir del Product Backlog, seleccionando las historias de usuario que serían abordadas en la iteración correspondiente (ver planificación detallada en Anexo \ref{anexo:planificacion}). Este artefacto permitió delimitar claramente el alcance de cada sprint y establecer compromisos realistas en función del tiempo disponible y de los objetivos académicos del trabajo final.
 
 Los \textit{incrementos} consistieron en versiones funcionales y progresivas del asistente virtual, que incorporaron nuevas capacidades o mejoras respecto de iteraciones anteriores. Cada incremento fue evaluado en términos de funcionalidad, coherencia pedagógica y alineación con los objetivos planteados, constituyendo la base para la retroalimentación y el ajuste continuo del proyecto.
 
 \subsection{Eventos y ciclos de retroalimentación}
 
-En cuanto a los eventos de Scrum, se adoptaron versiones adaptadas de los mismos, adecuadas al contexto de un proyecto académico individual. La planificación de cada sprint se realizó mediante una definición explícita de objetivos y tareas, considerando tanto los aspectos técnicos como los requerimientos metodológicos del Trabajo Final.
+En cuanto a los eventos de Scrum, se adoptaron versiones adaptadas de los mismos, adecuadas al contexto de un proyecto académico individual. La planificación de cada sprint se realizó mediante una definición explícita de objetivos y tareas, considerando tanto los aspectos técnicos como los requerimientos metodológicos del trabajo final.
 
-Las revisiones de sprint se llevaron a cabo mediante evaluaciones sistemáticas de los incrementos desarrollados, analizando el comportamiento del asistente virtual, la calidad de las respuestas generadas y su adecuación al dominio de la certificación PMP. Estas revisiones permitieron identificar oportunidades de mejora y redefinir prioridades para los sprints siguientes.
+Las revisiones de sprint se llevaron a cabo mediante evaluaciones sistemáticas de los incrementos desarrollados, analizando el comportamiento del asistente virtual, la calidad de las respuestas generadas y su adecuación al dominio de la certificación \gls{pmp}. Estas revisiones permitieron identificar oportunidades de mejora y redefinir prioridades para los sprints siguientes.
 
 Asimismo, se incorporaron instancias de retrospectiva, orientadas a reflexionar sobre el proceso de desarrollo, las decisiones metodológicas adoptadas y las dificultades encontradas. Este ejercicio de reflexión continua resultó fundamental para ajustar el enfoque de trabajo y mejorar progresivamente tanto el producto como el proceso seguido.
 
-La literatura especializada destaca que la aplicación de ciclos cortos de retroalimentación constituye uno de los principales factores asociados al desempeño efectivo de equipos Scrum en proyectos complejos, al favorecer la adaptación temprana y la mejora continua \parencite{verwijs2023scrum, rath2025agile}. En el contexto de este Trabajo Final, estos ciclos permitieron integrar aprendizaje técnico, pedagógico y metodológico de manera coherente y trazable.
+La literatura especializada destaca que la aplicación de ciclos cortos de retroalimentación constituye uno de los principales factores asociados al desempeño efectivo de equipos Scrum en proyectos complejos, al favorecer la adaptación temprana y la mejora continua \parencite{verwijs2023scrum, rath2025agile}. En el contexto de este trabajo final, estos ciclos permitieron integrar aprendizaje técnico, pedagógico y metodológico de manera coherente y trazable.
 
 \section{Planificación general del proyecto}
 
-La planificación general del proyecto se estructuró de manera coherente con el enfoque iterativo e incremental adoptado, estableciendo una secuencia de sprints orientados a la construcción progresiva del asistente virtual y a la validación continua de las decisiones técnicas y pedagógicas. Esta planificación permitió articular los objetivos específicos del Trabajo Final con actividades concretas y entregables verificables, garantizando la trazabilidad entre el planteo inicial del problema y los resultados obtenidos.
+La planificación general del proyecto se estructuró de manera coherente con el enfoque iterativo e incremental adoptado, estableciendo una secuencia de sprints orientados a la construcción progresiva del asistente virtual y a la validación continua de las decisiones técnicas y pedagógicas. Esta planificación permitió articular los objetivos específicos del trabajo final con actividades concretas y entregables verificables, garantizando la trazabilidad entre el planteo inicial del problema y los resultados obtenidos.
 
 A diferencia de una planificación tradicional exhaustiva realizada al inicio del proyecto, la planificación adoptada se concibió como un proceso dinámico, sujeto a revisión y ajuste a lo largo del desarrollo. No obstante, se definió una estructura general que sirvió como guía para organizar el trabajo y distribuir los esfuerzos de manera equilibrada en el tiempo.
 
@@ -94,7 +94,7 @@ La adopción de una planificación temporal basada en sprints permitió mantener
 
 \subsection{Relación entre objetivos específicos y sprints}
 
-La planificación del proyecto estableció una correspondencia explícita entre los objetivos específicos del Trabajo Final y los sprints ejecutados. Cada objetivo fue abordado a través de una o más iteraciones, permitiendo descomponer metas generales en actividades concretas y evaluables.
+La planificación del proyecto estableció una correspondencia explícita entre los objetivos específicos del trabajo final y los sprints ejecutados. Cada objetivo fue abordado a través de una o más iteraciones, permitiendo descomponer metas generales en actividades concretas y evaluables.
 
 Por ejemplo, los objetivos relacionados con el diseño conceptual del asistente y la definición de su comportamiento pedagógico fueron tratados en sprints iniciales, mientras que los objetivos vinculados a la implementación técnica y a la integración de componentes se desarrollaron en iteraciones posteriores. Finalmente, los objetivos asociados a la evaluación del asistente y al análisis de resultados se abordaron en los sprints finales del proyecto.
 
@@ -104,33 +104,33 @@ Desde una perspectiva metodológica, esta forma de planificación resulta consis
 
 \subsection{Alcance y restricciones del proyecto}
 
-La planificación general del proyecto contempló la definición explícita del alcance del asistente virtual, así como de las principales restricciones que condicionaron su desarrollo. En términos de alcance, el proyecto se centró en el diseño, implementación y evaluación de un asistente orientado específicamente a la preparación del examen de certificación PMP, sin pretender cubrir la totalidad de los contenidos ni reemplazar los materiales oficiales del PMI.
+La planificación general del proyecto contempló la definición explícita del alcance del asistente virtual, así como de las principales restricciones que condicionaron su desarrollo. En términos de alcance, el proyecto se centró en el diseño, implementación y evaluación de un asistente orientado específicamente a la preparación del examen de certificación \gls{pmp}, sin pretender cubrir la totalidad de los contenidos ni reemplazar los materiales oficiales del \gls{pmi}.
 
-El asistente fue concebido como una herramienta de apoyo al aprendizaje, enfocada en facilitar la comprensión conceptual, el razonamiento situacional y la reflexión metacognitiva, más que en proporcionar respuestas cerradas o garantizar resultados en el examen. Esta delimitación del alcance permitió concentrar los esfuerzos en aquellos aspectos donde el uso de modelos de lenguaje de gran escala podía aportar mayor valor educativo.
+El asistente fue concebido como una herramienta de apoyo al aprendizaje, enfocada en facilitar la comprensión conceptual, el razonamiento situacional y la reflexión metacognitiva, más que en proporcionar respuestas cerradas o garantizar resultados en el examen. Esta delimitación del alcance permitió concentrar los esfuerzos en aquellos aspectos donde el uso de \glspl{llm} podía aportar mayor valor educativo.
 
-Entre las principales restricciones del proyecto se destacaron las limitaciones de tiempo propias de un Trabajo Final de grado, la disponibilidad de recursos técnicos y la necesidad de trabajar con modelos de lenguaje preentrenados, sin acceso al proceso completo de entrenamiento. Asimismo, se consideraron las restricciones éticas y metodológicas asociadas al uso de inteligencia artificial generativa en contextos educativos, las cuales influyeron en las decisiones de diseño del asistente.
+Entre las principales restricciones del proyecto se destacaron las limitaciones de tiempo propias de un trabajo final de grado, la disponibilidad de recursos técnicos y la necesidad de trabajar con \glspl{llm} preentrenados, sin acceso al proceso completo de entrenamiento. Asimismo, se consideraron las restricciones éticas y metodológicas asociadas al uso de \gls{ia} generativa en contextos educativos, las cuales influyeron en las decisiones de diseño del asistente.
 
 La explicitación del alcance y de las restricciones resultó fundamental para orientar la planificación del proyecto y para interpretar adecuadamente los resultados obtenidos, evitando extrapolaciones indebidas y estableciendo con claridad los límites de la propuesta desarrollada.
 
 \section{Descripción de los sprints ejecutados}
 
-El desarrollo del asistente virtual se llevó a cabo a través de una serie de sprints consecutivos, cada uno de los cuales tuvo como objetivo la construcción de un incremento funcional del sistema y la validación progresiva de las decisiones técnicas y pedagógicas adoptadas. La descripción de los sprints permite comprender de manera detallada cómo se operacionalizó la metodología propuesta y cómo se materializaron los objetivos del Trabajo Final en actividades concretas.
+El desarrollo del asistente virtual se llevó a cabo a través de una serie de sprints consecutivos, cada uno de los cuales tuvo como objetivo la construcción de un incremento funcional del sistema y la validación progresiva de las decisiones técnicas y pedagógicas adoptadas. La descripción de los sprints permite comprender de manera detallada cómo se operacionalizó la metodología propuesta y cómo se materializaron los objetivos del trabajo final en actividades concretas.
 
 Cada sprint fue concebido como una unidad de trabajo cerrada, con objetivos claramente definidos, actividades planificadas y resultados verificables. Esta estructura facilitó el seguimiento del avance del proyecto y permitió documentar de forma sistemática el proceso de desarrollo.
 
 \subsection{Sprint 1: Análisis del dominio y definición conceptual}
 
-El primer sprint tuvo como objetivo principal el análisis del dominio de la gestión de proyectos y de la certificación PMP, así como la definición conceptual inicial del asistente virtual. Durante esta iteración se realizó un estudio detallado de la estructura del examen PMP, sus dominios, tipos de preguntas y enfoque situacional, con el fin de identificar los principales desafíos enfrentados por los aspirantes a la certificación.
+El primer sprint tuvo como objetivo principal el análisis del dominio de la gestión de proyectos y de la certificación \gls{pmp}, así como la definición conceptual inicial del asistente virtual. Durante esta iteración se realizó un estudio detallado de la estructura del examen \gls{pmp}, sus dominios, tipos de preguntas y enfoque situacional, con el fin de identificar los principales desafíos enfrentados por los aspirantes a la certificación.
 
 Asimismo, se definieron los objetivos pedagógicos del asistente, estableciendo su rol como herramienta de apoyo al aprendizaje y delimitando explícitamente su alcance y limitaciones. En esta etapa se trabajó en la identificación de los perfiles de usuario, los tipos de consultas esperadas y los principios que debían guiar la interacción entre el asistente y el estudiante.
 
-Como resultado de este sprint se obtuvo una primera definición del Product Backlog, que incluyó épicas e historias de usuario orientadas tanto a funcionalidades técnicas como a comportamientos pedagógicos del asistente.
+Como resultado de este sprint se obtuvo una primera definición del product backlog, que incluyó épicas e historias de usuario orientadas tanto a funcionalidades técnicas como a comportamientos pedagógicos del asistente.
 
 \subsection{Sprint 2: Diseño de la interacción y prototipo inicial}
 
 El segundo sprint se orientó al diseño de los flujos de interacción entre el usuario y el asistente virtual, así como a la construcción de un prototipo inicial funcional. En esta iteración se definieron los tipos de prompts a utilizar, la estructura general de las respuestas y los mecanismos básicos de retroalimentación.
 
-Durante este sprint se exploraron distintas estrategias de formulación de prompts con el objetivo de alinear el comportamiento del modelo de lenguaje con los principios del PMBOK® y con el enfoque situacional del examen PMP. Estas exploraciones permitieron identificar patrones efectivos de interacción y detectar limitaciones tempranas en el comportamiento del asistente.
+Durante este sprint se exploraron distintas estrategias de formulación de prompts con el objetivo de alinear el comportamiento del \gls{llm} con los principios del \gls{pmbok} y con el enfoque situacional del examen \gls{pmp}. Estas exploraciones permitieron identificar patrones efectivos de interacción y detectar limitaciones tempranas en el comportamiento del asistente.
 
 El resultado principal de este sprint fue un prototipo funcional capaz de responder consultas básicas y de simular explicaciones conceptuales y situacionales, lo que permitió comenzar a evaluar la viabilidad de la propuesta.
 
@@ -140,18 +140,12 @@ El tercer sprint se centró en la implementación funcional del asistente y en e
 
 Asimismo, se introdujeron mecanismos para fomentar la reflexión metacognitiva del usuario, tales como preguntas de seguimiento, explicaciones comparativas y justificaciones del razonamiento propuesto. Estas mejoras estuvieron orientadas a reforzar el aprendizaje profundo y a evitar el uso pasivo del asistente como una fuente de respuestas directas.
 
-Como resultado de este sprint se obtuvo una versión del asistente con mayor estabilidad funcional y con un comportamiento pedagógico más alineado con los objetivos del Trabajo Final.
+Como resultado de este sprint se obtuvo una versión del asistente con mayor estabilidad funcional y con un comportamiento pedagógico más alineado con los objetivos del trabajo final.
 
 \subsection{Sprint 4: Evaluación en escenarios de uso y ajustes finales}
 
-El cuarto sprint estuvo dedicado a la evaluación del asistente en escenarios de uso representativos y a la realización de ajustes finales. Durante esta iteración se analizaron interacciones reales con el asistente, evaluando la calidad de las respuestas, su adecuación al dominio de la certificación PMP y su utilidad percibida como herramienta de apoyo al estudio.
+El cuarto sprint estuvo dedicado a la evaluación del asistente en escenarios de uso representativos y a la realización de ajustes finales. Durante esta iteración se analizaron interacciones reales con el asistente, evaluando la calidad de las respuestas, su adecuación al dominio de la certificación \gls{pmp} y su utilidad percibida como herramienta de apoyo al estudio.
 
 A partir de los resultados observados, se realizaron ajustes en los prompts, se corrigieron comportamientos no deseados y se reforzaron aquellos patrones de interacción que demostraron ser más efectivos. Este proceso permitió consolidar el asistente como un prototipo funcional y evaluable, adecuado para el análisis presentado en los capítulos siguientes.
 
-El cierre de este sprint marcó la finalización del desarrollo del asistente virtual y sentó las bases para el análisis de resultados y la discusión de las conclusiones del Trabajo Final.
-
-\subsection{Síntesis del proceso iterativo}
-
-La ejecución de los sprints permitió materializar de manera progresiva los objetivos planteados, integrando aspectos técnicos, pedagógicos y metodológicos en un proceso coherente y trazable. El enfoque iterativo adoptado facilitó la adaptación continua del asistente y la incorporación sistemática de aprendizajes derivados de la experiencia de desarrollo y uso.
-
-Esta estructura metodológica no solo contribuyó a la construcción del producto final, sino que también proporcionó un marco sólido para el análisis crítico del proceso seguido, fortaleciendo el valor académico del Trabajo Final.
+El cierre de este sprint marcó la finalización del desarrollo del asistente virtual y sentó las bases para el análisis de resultados y la discusión de las conclusiones del trabajo final.
